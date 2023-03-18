@@ -6,8 +6,10 @@ const config = require("config");
 const app = express();
 const PORT = config.get("serverPort");
 
-const start = () =>{
+const start = async  () =>{
     try {
+        await mongoose.connect(config.get('dbUrl'));
+
         app.listen(PORT, () => {
             console.log('Server started on post ' , PORT);
         });
