@@ -7,7 +7,7 @@ router.post('/registration' , (req , res) =>{
     try {
         const {email , password} = req.body;
 
-
+        const candidate = User.findOne({email});
     }catch (e) {
         console.log(e);
         res.send({message : "Server error."});
