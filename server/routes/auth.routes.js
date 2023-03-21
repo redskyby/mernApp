@@ -1,10 +1,23 @@
 const  Routes = require("express");
 const User = require("../models/User");
 const router = new Routes();
+const {check , validationResult} = require("express-validator")
 const bcrypt = require('bcrypt');
 
-router.post('/registration' , async (req , res) =>{
+
+router.post('/registration' ,
+    [
+        check('email' ,"Uncorrect email").isEmail(),
+        check('password' ,  "Password must be longer than 3 and shorter than 12").isLength({min :3 , max :12})
+    ],
+    async (req , res) =>{
     try {
+        console.log(req.body)
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(400).json({message: "Uncorrect request", errors})
+        }
+
         const {email , password} = req.body;
 
         const candidate = User.findOne({email});
@@ -21,3 +34,5 @@ router.post('/registration' , async (req , res) =>{
         res.send({message : "Server error."});
     }
 })
+
+module.exports = router
