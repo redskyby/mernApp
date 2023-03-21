@@ -24,7 +24,7 @@ router.post('/registration' ,
         if(candidate){
             return res.status(400).json({message : `User with email ${email} already exist.`})
         }
-
+        //created new user
         const hashPassword = await bcrypt.hash(password , 15);
         const user = new User({email , password : hashPassword});
         await user.save();
@@ -34,5 +34,16 @@ router.post('/registration' ,
         res.send({message : "Server error."});
     }
 })
+
+router.get('/login' ,
+    async (req , res) =>{
+        try {
+
+        }catch (e) {
+            console.log(e);
+            res.send({message : "Server error."});
+        }
+    })
+
 
 module.exports = router
