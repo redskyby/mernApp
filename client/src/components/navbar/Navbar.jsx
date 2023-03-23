@@ -1,8 +1,9 @@
 import React from 'react';
 import './navbar.css'
-import Logo from '../../assets/img/navbar-logo.svg'
+import Logo from '../../assets/navbar-logo.svg'
 import {NavLink} from "react-router-dom";
-const Navbar = () => {
+
+function Navbar () {
     return (
         <div className="navbar">
             <div className="container">
