@@ -1,0 +1,14 @@
+@import "../color";
+
+input {
+  border: none;
+  border-bottom: $font-color solid 3px;
+  background: transparent;
+  width: 100%;
+  padding: 3px;
+  &:focus {
+    outline: none;
+    transform: scale(1.01);
+  }
+}
+

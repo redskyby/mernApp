@@ -1,0 +1,13 @@
+input {
+  border: none;
+  border-bottom: #566885 solid 3px;
+  background: transparent;
+  width: 100%;
+  padding: 3px;
+}
+input:focus {
+  outline: none;
+  transform: scale(1.01);
+}
+
+/*# sourceMappingURL=input.css.map */
