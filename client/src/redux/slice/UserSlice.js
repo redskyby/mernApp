@@ -10,11 +10,11 @@ const userSlice = createSlice({
         initialState,
         reducers: {
             SET_USER: (state, action) => {
-                state.currentUser = action.payload.user;
+                state.currentUser = action.payload;
                 state.isAuth = true;
             }
         }
     }
 )
 export default userSlice.reducer;
-export const {} = userSlice.actions;
+export const {SET_USER} = userSlice.actions;

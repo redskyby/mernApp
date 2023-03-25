@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {SET_USER} from "../redux/slice/UserSlice";
 
 export const registration = async (email, password) => {
     try {
@@ -20,7 +21,8 @@ export const login =  (email, password) => {
                 email,
                 password
             })
-            console.log(response.data);
+            dispatch(SET_USER(response.data.user));
+           // console.log(response.data);
         } catch (e) {
             alert(e.response.data.message)
         }

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './registration.css'
 import Input from "../../utils/input/Input";
-import {useDispatch} from "react-redux";
+import {useDispatch } from "react-redux";
 import {login} from "../../actions/user";
 
 
@@ -15,7 +15,13 @@ const Login = () => {
             <div className="authorization__header">Авторизация</div>
             <Input value={email} setValue={setEmail} type="text" placeholder="Введите email..."/>
             <Input value={password} setValue={setPassword} type="password" placeholder="Введите пароль..."/>
-            <button className="authorization__btn" onClick={() =>dispatch (login(email , password))}>Войти</button>
+            <button
+                className="authorization__btn"
+                onClick={() =>
+                    dispatch (login(email , password))
+
+                }
+            >Войти</button>
         </div>
     );
 };
