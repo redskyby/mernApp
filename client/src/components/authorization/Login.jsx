@@ -19,7 +19,6 @@ const Login = () => {
                 className="authorization__btn"
                 onClick={() =>
                     dispatch (login(email , password))
-
                 }
             >Войти</button>
         </div>

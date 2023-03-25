@@ -22,6 +22,7 @@ export const login =  (email, password) => {
                 password
             })
             dispatch(SET_USER(response.data.user));
+            localStorage.setItem('token' ,response.data.token);
            // console.log(response.data);
         } catch (e) {
             alert(e.response.data.message)
