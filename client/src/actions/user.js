@@ -20,6 +20,7 @@ export const login =  (email, password) => {
                 email,
                 password
             })
+            console.log(response.data);
         } catch (e) {
             alert(e.response.data.message)
         }
