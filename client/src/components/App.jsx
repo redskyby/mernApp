@@ -1,14 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 import './app.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Navbar from "./navbar/Navbar";
 import Registration from "./authorization/Registration";
 import Login from "./authorization/Login";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {auth} from "../actions/user";
 
 
 function App() {
     const isAuth = useSelector(state => state.userToolkit.isAuth);
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        if(localStorage.getItem('token')){
+            dispatch(auth())
+        }
+    }, [])
+
 
 
     return (
@@ -17,10 +27,10 @@ function App() {
                 <Navbar/>
                 <div className="wrap">
                     {!isAuth &&
-                    <Routes>
-                        <Route path="/registration" element={<Registration/>}/>
-                        <Route path="/login" element={<Login/>}/>
-                    </Routes>
+                        <Routes>
+                            <Route path="/registration" element={<Registration/>}/>
+                            <Route path="/login" element={<Login/>}/>
+                        </Routes>
                     }
                 </div>
             </div>
