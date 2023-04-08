@@ -1,4 +1,5 @@
 const fileService = require('../services/fileService');
+const User = require('../models/User')
 const  File = require('../models/File');
 
 class fileController{
@@ -11,7 +12,7 @@ class fileController{
                         file.path = name;
                         await fileService.createDir(file);
                 }else{
-                    file.path = `${parentFile.path}\\${file.name}`;
+                    file.path = `${parentFile.path}\\${file.name}`
                     await fileService.createDir(file);
                     parentFile.childs.push(file._id);
                     await  parentFile.save();
@@ -21,8 +22,11 @@ class fileController{
                 return res.json(file);
             }catch (e) {
                 console.log(e);
-                return res.stack(400).json(e);
+                return res.status(400).json(e);
             }
         }
 }
 module.exports = new fileController();
+
+
+
