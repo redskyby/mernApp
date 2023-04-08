@@ -127,7 +127,8 @@ server/static
 /node_modules
 /.pnp
 .pnp.js
-
+# ignore user's folder
+/files
 # testing
 /coverage
 
