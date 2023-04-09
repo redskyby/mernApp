@@ -9,11 +9,11 @@ const fileSlice = createSlice({
     name: "file",
     initialState,
     reducers: {
-        SET_FILES: () => {
-
+        SET_FILES: (state , action) => {
+                state.files = action.payload;
         },
-        SET_CURRENT_DIR: () => {
-
+        SET_CURRENT_DIR: (state , action) => {
+            state.currentDir = action.payload;
         }
     }
 });
