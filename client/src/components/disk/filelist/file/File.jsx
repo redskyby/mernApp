@@ -1,6 +1,6 @@
 import React from 'react';
 
-function File(props) {
+function File() {
     return (
         <div></div>
     );

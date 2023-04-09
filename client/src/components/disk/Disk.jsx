@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Disk(props) {
+function Disk() {
     return (
-        <div></div>
+        <div>Disk</div>
     );
 }
 
