@@ -12,7 +12,7 @@ function File() {
                 <div className="filelist__date">Дата</div>
                 <div className="filelist__size">Размер</div>
             </div>
-            {files}
+
         </div>
     );
 }
