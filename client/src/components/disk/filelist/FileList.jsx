@@ -1,8 +1,18 @@
 import React from 'react';
-
+import {useSelector} from "react-redux";
+import './fileList.css'
 function FileList() {
+    const files = useSelector(state => state.fileToolkit.files);
+
     return (
-        <div></div>
+        <div className='filelist'>
+            <div className="filelist__header">
+                <div className="filelist__name">Название</div>
+                <div className="filelist__date">Дата</div>
+                <div className="filelist__size">Размер</div>
+            </div>
+
+        </div>
     );
 }
 
