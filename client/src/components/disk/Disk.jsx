@@ -12,13 +12,12 @@ function Disk() {
     useEffect(()=>{
         dispatch(getFiles(currentDir));
     }, [currentDir]);
+
     return (
         <div className="disk">
             <div className="disk__btns">
                 <button className="disk__back">Назад</button>
-                <button className="disk__create"
-                    onClick={() =>{ console.log(currentDir)}}
-                >Создать папку</button>
+                <button className="disk__create">Создать папку</button>
             </div>
             <FileList />
         </div>

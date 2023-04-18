@@ -1,4 +1,5 @@
 import axios from "axios";
+import {SET_FILES} from "../redux/slice/FileSlice";
 
 export function getFiles(dirId){
     return async dispatch =>{
@@ -6,7 +7,7 @@ export function getFiles(dirId){
             const response = await axios.get(`http://localhost:5000/api/files${dirId ? '?parent='+dirId : ''}`,{
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            console.log(response.data);
+            dispatch(SET_FILES(response.data));
         }catch (e) {
             alert(e.response.data.message);
         }
