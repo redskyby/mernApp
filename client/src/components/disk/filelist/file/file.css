@@ -1,20 +1,17 @@
-.filelist {
-  margin: 20px 0;
-}
-.filelist__header {
-  display: grid;
-  grid-template-columns: 1fr 4fr repeat(4, 1fr);
-}
-.filelist__name {
-  grid-column-start: 2;
-}
-.filelist__date {
-  grid-column-start: 5;
-  justify-self: center;
-}
-.filelist__size {
-  grid-column-start: 6;
-  justify-self: center;
-}
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 1 | @import '../src/utils/color';
+ *   |         ^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   file.scss 1:9  root stylesheet */
 
-/*# sourceMappingURL=file.css.map */
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @import '../src/utils/color';\d\a   \2502          ^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   file.scss 1:9  root stylesheet";
+}
