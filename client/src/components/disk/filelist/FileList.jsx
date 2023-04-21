@@ -4,7 +4,7 @@ import './fileList.css'
 import File from "./file/File";
 
 function FileList() {
-    const files = useSelector(state => state.fileToolkit.files).map(file => <File key={file.id} file={file}/>);
+    const files = useSelector(state => state.fileToolkit.files).map(file => <File key={file._id} file={file}/>);
 
     return (
         <div className='filelist'>
