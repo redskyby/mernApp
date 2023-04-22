@@ -14,10 +14,13 @@ const fileSlice = createSlice({
         },
         SET_CURRENT_DIR: (state , action) => {
             state.currentDir = action.payload;
+        },
+        ADD_FILE : (state , action)=>{
+                state.files = [...state.files , action.payload];
         }
     }
 });
 
 
 export default fileSlice.reducer;
-export const {SET_FILES, SET_CURRENT_DIR} = fileSlice.actions;
+export const {SET_FILES, SET_CURRENT_DIR, ADD_FILE} = fileSlice.actions;
