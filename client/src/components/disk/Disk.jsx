@@ -14,7 +14,7 @@ function Disk() {
     }, [currentDir]);
 
     function createDirHandler() {
-        dispatch(createDir(currentDir , 'test'));
+        dispatch(createDir(currentDir , 'test8'));
     }
 
     return (
