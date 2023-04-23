@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import file from "../../redux/slice/FileSlice";
-import {createDir, getFiles} from "../../actions/file";
+import  {SET_POPUP_DISPLAY} from "../../redux/slice/FileSlice";
+import { getFiles} from "../../actions/file";
 import FileList from "./filelist/FileList";
 import './disk.css';
 import PopUp from "./PopUp";
@@ -15,7 +15,8 @@ function Disk() {
     }, [currentDir]);
 
     function createDirHandler() {
-        dispatch(createDir(currentDir , 'test8'));
+        //dispatch(createDir(currentDir , 'test8'));
+        dispatch(SET_POPUP_DISPLAY('flex'));
     }
 
     return (
