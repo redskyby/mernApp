@@ -4,6 +4,7 @@ import file from "../../redux/slice/FileSlice";
 import {createDir, getFiles} from "../../actions/file";
 import FileList from "./filelist/FileList";
 import './disk.css';
+import PopUp from "./PopUp";
 
 function Disk() {
     const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function Disk() {
                 >Создать папку</button>
             </div>
             <FileList />
+            <PopUp />
         </div>
     );
 }
