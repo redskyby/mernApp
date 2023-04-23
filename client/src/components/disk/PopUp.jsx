@@ -19,7 +19,7 @@ function PopUp(props) {
                     value={dirname}
                     setValue={setDirName}
                 />
-                <button className="popup__create"></button>
+                <button className="popup__create">Создать</button>
             </div>
         </div>
     );

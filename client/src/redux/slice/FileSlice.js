@@ -2,7 +2,8 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     files: [],
-    currentDir: null
+    currentDir: null,
+    popUpDisplay : 'none'
 }
 
 const fileSlice = createSlice({
@@ -17,10 +18,13 @@ const fileSlice = createSlice({
         },
         ADD_FILE : (state , action)=>{
                 state.files = [...state.files , action.payload];
+        },
+        SET_POPUP_DISPLAY: (state, action) =>{
+            state.popUpDisplay = action.payload;
         }
     }
 });
 
 
 export default fileSlice.reducer;
-export const {SET_FILES, SET_CURRENT_DIR, ADD_FILE} = fileSlice.actions;
+export const {SET_FILES, SET_CURRENT_DIR, ADD_FILE, SET_POPUP_DISPLAY} = fileSlice.actions;
