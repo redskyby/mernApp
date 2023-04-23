@@ -1,5 +1,5 @@
 import axios from "axios";
-import {SET_FILES} from "../redux/slice/FileSlice";
+import {ADD_FILE, SET_FILES} from "../redux/slice/FileSlice";
 
 export function getFiles(dirId){
     return async dispatch =>{
@@ -26,7 +26,7 @@ export function createDir(dirId , name){
             },{
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            dispatch(SET_FILES(response.data));
+            dispatch(ADD_FILE(response.data));
             //console.log(response.data);
         }catch (e) {
             alert(e.response.data.message);
