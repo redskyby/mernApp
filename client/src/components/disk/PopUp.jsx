@@ -11,7 +11,7 @@ function PopUp() {
     const currentDir = useSelector(state => state.fileToolkit.currentDir);
     const dispatch = useDispatch();
 
-    function showPopUpHandler() {
+    function createDirHandler() {
         dispatch(createDir(currentDir , dirname));
         setDirName('');
         dispatch(SET_POPUP_DISPLAY('none'));
@@ -43,7 +43,7 @@ function PopUp() {
                 />
                 <button
                     className="popup__create"
-                    onClick={()=> showPopUpHandler()}
+                    onClick={()=> createDirHandler()}
                 >Создать</button>
             </div>
         </div>

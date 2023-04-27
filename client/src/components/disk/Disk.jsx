@@ -9,12 +9,13 @@ import PopUp from "./PopUp";
 function Disk() {
     const dispatch = useDispatch();
     const currentDir = useSelector(state => state.fileToolkit.currentDir);
+    const dirStack = useSelector(state => state.fileToolkit.dirStack);
 
     useEffect(()=>{
         dispatch(getFiles(currentDir));
     }, [currentDir]);
 
-    function createDirHandler() {
+    function showPopUpHandler() {
         dispatch(SET_POPUP_DISPLAY('flex'));
     }
 
@@ -31,7 +32,7 @@ function Disk() {
                 >Назад</button>
                 <button
                     className="disk__create"
-                    onClick={() => createDirHandler()}
+                    onClick={() => showPopUpHandler()}
                 >Создать папку</button>
             </div>
             <FileList />
