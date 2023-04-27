@@ -2,16 +2,20 @@ import React from 'react';
 import './file.css';
 import dirLogo from '../../../../assets/dir.svg';
 import fileLogo from '../../../../assets/file.svg';
+import {useDispatch} from "react-redux";
+import {SET_CURRENT_DIR} from "../../../../redux/slice/FileSlice";
 
 function File({file}) {
-    function openHadler() {
+    const dispatch = useDispatch();
 
+    function openDirHandler() {
+        dispatch(SET_CURRENT_DIR(file._id));
     }
 
     return (
        <div
            className='file'
-           onClick={() => openHadler()}
+           onClick={() => openDirHandler()}
        >
             <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file__img"/>
             <div className="file__name">{file.name}</div>
