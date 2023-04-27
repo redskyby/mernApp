@@ -2,13 +2,16 @@ import React from 'react';
 import './file.css';
 import dirLogo from '../../../../assets/dir.svg';
 import fileLogo from '../../../../assets/file.svg';
-import {useDispatch} from "react-redux";
-import {SET_CURRENT_DIR} from "../../../../redux/slice/FileSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {PUSH_TO_STACK, SET_CURRENT_DIR} from "../../../../redux/slice/FileSlice";
+
 
 function File({file}) {
     const dispatch = useDispatch();
+    const currentDir = useSelector(state => state.fileToolkit.dirStack);
 
     function openDirHandler() {
+        dispatch(PUSH_TO_STACK(currentDir));
         dispatch(SET_CURRENT_DIR(file._id));
     }
 

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import  {SET_POPUP_DISPLAY} from "../../redux/slice/FileSlice";
+import {SET_CURRENT_DIR, SET_POPUP_DISPLAY} from "../../redux/slice/FileSlice";
 import { getFiles} from "../../actions/file";
 import FileList from "./filelist/FileList";
 import './disk.css';
@@ -20,7 +20,8 @@ function Disk() {
     }
 
     function backClickHandler ()  {
-
+            //const backDirId = dirStack;
+            //dispatch(SET_CURRENT_DIR(backDirId));
     }
 
     return (
