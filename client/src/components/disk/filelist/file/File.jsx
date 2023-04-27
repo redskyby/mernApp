@@ -15,7 +15,7 @@ function File({file}) {
     return (
        <div
            className='file'
-           onClick={() => openDirHandler()}
+           onClick={ file.type === 'dir' ? () => openDirHandler() : ''}
        >
             <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file__img"/>
             <div className="file__name">{file.name}</div>

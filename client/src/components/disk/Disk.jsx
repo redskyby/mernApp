@@ -15,14 +15,20 @@ function Disk() {
     }, [currentDir]);
 
     function createDirHandler() {
-        //dispatch(createDir(currentDir , 'test8'));
         dispatch(SET_POPUP_DISPLAY('flex'));
+    }
+
+    function backClickHandler ()  {
+
     }
 
     return (
         <div className="disk">
             <div className="disk__btns">
-                <button className="disk__back">Назад</button>
+                <button
+                    className="disk__back"
+                    onClick={ () => backClickHandler()}
+                >Назад</button>
                 <button
                     className="disk__create"
                     onClick={() => createDirHandler()}
