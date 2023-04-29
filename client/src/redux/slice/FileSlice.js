@@ -24,7 +24,7 @@ const fileSlice = createSlice({
             state.popUpDisplay = action.payload;
         },
         PUSH_TO_STACK : (state, action) =>{
-            state.dirStack.push(action.payload);
+            state.dirStack = [...state.dirStack , action.payload];
         },
         POP_TO_STACK : (state) =>{
             state.dirStack.pop();
