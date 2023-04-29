@@ -12,16 +12,16 @@ function File({file}) {
 
     function openDirHandler() {
 
-        if(currentDir) {
+       // if(currentDir) {
            // dispatch(PUSH_TO_STACK(currentDir));
             dispatch(SET_CURRENT_DIR(file._id));
 
-            dispatch(PUSH_TO_STACK(file._id));
-        }else{
+            dispatch(PUSH_TO_STACK(currentDir));
+       /* }else{
            // dispatch(PUSH_TO_STACK(file._id));
             dispatch(SET_CURRENT_DIR(file._id));
             dispatch(PUSH_TO_STACK(file._id));
-        }
+        }*/
 
     }
 

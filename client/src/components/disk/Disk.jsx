@@ -23,7 +23,7 @@ function Disk() {
     function backClickHandler ()  {
 
             dispatch(POP_TO_STACK(dirStack));
-            dispatch(SET_CURRENT_DIR(null));
+           // dispatch(SET_CURRENT_DIR());
     }
 
     return (

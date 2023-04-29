@@ -27,7 +27,7 @@ const fileSlice = createSlice({
             state.dirStack = [...state.dirStack , action.payload];
         },
         POP_TO_STACK : (state) =>{
-            state.dirStack.pop();
+           state.currentDir =  state.dirStack.pop();
         }
     }
 });
