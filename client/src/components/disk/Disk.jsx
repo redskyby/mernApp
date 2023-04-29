@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {POP_TO_STACK, PUSH_TO_STACK, SET_CURRENT_DIR, SET_POPUP_DISPLAY} from "../../redux/slice/FileSlice";
+import {POP_TO_STACK,  SET_POPUP_DISPLAY} from "../../redux/slice/FileSlice";
 import { getFiles} from "../../actions/file";
 import FileList from "./filelist/FileList";
 import './disk.css';
@@ -20,10 +20,8 @@ function Disk() {
         dispatch(SET_POPUP_DISPLAY('flex'));
     }
 
-    function backClickHandler ()  {
-
-            dispatch(POP_TO_STACK(dirStack));
-           // dispatch(SET_CURRENT_DIR());
+    function backClickHandler() {
+        dispatch(POP_TO_STACK(dirStack));
     }
 
     return (
@@ -31,15 +29,17 @@ function Disk() {
             <div className="disk__btns">
                 <button
                     className="disk__back"
-                    onClick={ () => backClickHandler()}
-                >Назад</button>
+                    onClick={() => backClickHandler()}
+                >Назад
+                </button>
                 <button
                     className="disk__create"
                     onClick={() => showPopUpHandler()}
-                >Создать папку</button>
+                >Создать папку
+                </button>
             </div>
-            <FileList />
-            <PopUp />
+            <FileList/>
+            <PopUp/>
         </div>
     );
 }
