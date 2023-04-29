@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {SET_CURRENT_DIR, SET_POPUP_DISPLAY} from "../../redux/slice/FileSlice";
+import {POP_TO_STACK, PUSH_TO_STACK, SET_CURRENT_DIR, SET_POPUP_DISPLAY} from "../../redux/slice/FileSlice";
 import { getFiles} from "../../actions/file";
 import FileList from "./filelist/FileList";
 import './disk.css';
@@ -11,8 +11,9 @@ function Disk() {
     const currentDir = useSelector(state => state.fileToolkit.currentDir);
     const dirStack = useSelector(state => state.fileToolkit.dirStack);
 
+
     useEffect(()=>{
-        dispatch(getFiles(currentDir));
+            dispatch(getFiles(currentDir));
     }, [currentDir]);
 
     function showPopUpHandler() {
@@ -20,8 +21,8 @@ function Disk() {
     }
 
     function backClickHandler ()  {
-            //const backDirId = dirStack;
-            //dispatch(SET_CURRENT_DIR(backDirId));
+            dispatch(POP_TO_STACK(dirStack));
+            dispatch(SET_CURRENT_DIR(dirStack));
     }
 
     return (

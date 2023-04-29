@@ -8,11 +8,20 @@ import {PUSH_TO_STACK, SET_CURRENT_DIR} from "../../../../redux/slice/FileSlice"
 
 function File({file}) {
     const dispatch = useDispatch();
-    const currentDir = useSelector(state => state.fileToolkit.dirStack);
+    const currentDir = useSelector(state => state.fileToolkit.currentDir);
 
     function openDirHandler() {
-        dispatch(PUSH_TO_STACK(currentDir));
-        dispatch(SET_CURRENT_DIR(file._id));
+
+        if(currentDir) {
+            dispatch(SET_CURRENT_DIR(file._id));
+            dispatch(PUSH_TO_STACK(file._id));
+            //dispatch(PUSH_TO_STACK(file._id));
+        }else{
+
+            dispatch(SET_CURRENT_DIR(file._id));
+            dispatch(PUSH_TO_STACK(file._id));
+        }
+
     }
 
     return (
