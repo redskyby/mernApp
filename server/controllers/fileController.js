@@ -35,6 +35,22 @@ class fileController{
             return res.status(500).json({message: "Can not get files"})
         }
     }
+
+    async upLoadFile(req , res){
+            try{
+                const file = req.files.file;
+
+                const parent = await File.findOne({user : req.user.id , _id : req.user.parent});
+                const user = await User.findOne({_id : req.user.id});
+
+                if (user.usedSpace +  file.size > user.diskSpace){
+                    return res.status(400).json({message : "There no space on the disk"});
+                }
+            }catch (e) {
+                console.log(e);
+                return res.status(500).json({message : "Upload error."})
+            }
+    }
         
 }
 module.exports = new fileController();
