@@ -3,6 +3,7 @@
 }
 .disk__btns {
   display: flex;
+  transition: all 1s ease-out;
 }
 .disk__create {
   margin-left: 10px;

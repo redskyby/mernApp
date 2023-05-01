@@ -57,6 +57,26 @@ class fileController{
                 }else{
                     path = `${config.get('filePath')}\\${user.id}\\${file.name}`;
                 }
+
+                if(fs.existsSync(path)){
+                    return res.status(400).json({message : "File already exist"});
+                }
+                file.mv(path);
+
+                const type = file.name.split('.').pop();
+                const dbFile = new File({
+                    name : file.name,
+                    type,
+                    size : file.size,
+                    path : parent?.path,
+                    parent : parent?._id,
+                    user : user._id
+                })
+
+                await dbFile.save();
+                await user.save();
+
+                res.json(dbFile);
             }catch (e) {
                 console.log(e);
                 return res.status(500).json({message : "Upload error."})

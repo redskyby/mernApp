@@ -3,6 +3,7 @@
 
   &__btns {
     display: flex;
+    transition: all 1s ease-out;
   }
 
   &__create {
