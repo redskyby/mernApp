@@ -27,11 +27,11 @@ function Disk() {
     return (
         <div className="disk">
             <div className="disk__btns">
-                <button
+                {currentDir &&  <button
                     className="disk__back"
                     onClick={() => backClickHandler()}
                 >Назад
-                </button>
+                </button>}
                 <button
                     className="disk__create"
                     onClick={() => showPopUpHandler()}
