@@ -37,6 +37,9 @@ function Disk() {
                     onClick={() => showPopUpHandler()}
                 >Создать папку
                 </button>
+                <div className="disk__upload">
+                    <label htmlFor="" className="disk_upload-label"></label>
+                </div>
             </div>
             <FileList/>
             <PopUp/>
