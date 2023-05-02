@@ -8,6 +8,15 @@
 .disk__create {
   margin-left: 10px;
 }
+.disk__upload-input {
+  display: none;
+}
+.disk__upload-label {
+  border: 2px dashed #566885;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
 
 .popup {
   width: 100%;
@@ -38,7 +47,7 @@
   justify-content: space-between;
 }
 .popup input {
-  margin: 20px 0px;
+  margin: 20px 0;
 }
 
 /*# sourceMappingURL=disk.css.map */

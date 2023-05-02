@@ -38,7 +38,8 @@ function Disk() {
                 >Создать папку
                 </button>
                 <div className="disk__upload">
-                    <label htmlFor="" className="disk_upload-label"></label>
+                    <label htmlFor="disk__upload-input" className="disk__upload-label">Загрузить файл</label>
+                    <input type="file" id="disk__upload-input" className="disk__upload-input"/>
                 </div>
             </div>
             <FileList/>
