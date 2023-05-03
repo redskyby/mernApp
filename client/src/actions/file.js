@@ -32,3 +32,21 @@ export function createDir(dirId , name){
         }
     }
 }
+
+export function upLoadFile(dirId , name){
+    return async dispatch =>{
+        try {
+            const response = await axios.post(`http://localhost:5000/api/files`,{
+                name,
+                parent : dirId,
+                type : 'dir'
+
+            },{
+                headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+            });
+            dispatch(ADD_FILE(response.data));
+        }catch (e) {
+            alert(e.response.data.message);
+        }
+    }
+}
