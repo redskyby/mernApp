@@ -11,14 +11,16 @@ function File({file}) {
     const currentDir = useSelector(state => state.fileToolkit.currentDir);
 
     function openDirHandler() {
-        dispatch(SET_CURRENT_DIR(file._id));
-        dispatch(PUSH_TO_STACK(currentDir));
+        if(file.type === 'dir'){
+            dispatch(SET_CURRENT_DIR(file._id));
+            dispatch(PUSH_TO_STACK(currentDir));
+        }
     }
 
     return (
         <div
             className='file'
-            onClick={file.type === 'dir' ? () => openDirHandler() : ''}
+            onClick={() => openDirHandler(file)}
         >
             <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file__img"/>
             <div className="file__name">{file.name}</div>

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {POP_TO_STACK,  SET_POPUP_DISPLAY} from "../../redux/slice/FileSlice";
-import { getFiles} from "../../actions/file";
+import {getFiles, upLoadFile} from "../../actions/file";
 import FileList from "./filelist/FileList";
 import './disk.css';
 import PopUp from "./PopUp";
@@ -24,6 +24,11 @@ function Disk() {
         dispatch(POP_TO_STACK(dirStack));
     }
 
+    function fileUploadsHandler(event) {
+        const files = [...event.target.files];
+        files.forEach(file =>dispatch(upLoadFile(file , currentDir)))
+    }
+
     return (
         <div className="disk">
             <div className="disk__btns">
@@ -39,7 +44,13 @@ function Disk() {
                 </button>
                 <div className="disk__upload">
                     <label htmlFor="disk__upload-input" className="disk__upload-label">Загрузить файл</label>
-                    <input type="file" id="disk__upload-input" className="disk__upload-input"/>
+                    <input
+                        multiple={true}
+                        onChange={(event) =>fileUploadsHandler(event)}
+                        type="file"
+                        id="disk__upload-input"
+                        className="disk__upload-input"
+                    />
                 </div>
             </div>
             <FileList/>
