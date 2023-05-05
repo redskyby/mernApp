@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {POP_TO_STACK,  SET_POPUP_DISPLAY} from "../../redux/slice/FileSlice";
 import {getFiles, upLoadFile} from "../../actions/file";
@@ -10,7 +10,7 @@ function Disk() {
     const dispatch = useDispatch();
     const currentDir = useSelector(state => state.fileToolkit.currentDir);
     const dirStack = useSelector(state => state.fileToolkit.dirStack);
-
+    const [dragEnter , setDragEnter] = useState(false);
 
     useEffect(()=>{
             dispatch(getFiles(currentDir));
