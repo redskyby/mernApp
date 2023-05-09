@@ -29,7 +29,7 @@ function Disk() {
         files.forEach(file =>dispatch(upLoadFile(file , currentDir)))
     }
 
-    return (
+    return ( !dragEnter?
         <div className="disk">
             <div className="disk__btns">
                 {currentDir &&  <button
@@ -56,6 +56,8 @@ function Disk() {
             <FileList/>
             <PopUp/>
         </div>
+            :
+            <div></div>
     );
 }
 
