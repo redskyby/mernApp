@@ -1,5 +1,6 @@
 .disk {
   margin-top: 20px;
+  height: 100vh;
 }
 .disk__btns {
   display: flex;
