@@ -30,7 +30,12 @@ function Disk() {
     }
 
     return ( !dragEnter?
-        <div className="disk">
+        <div
+            className="disk"
+            onDragEnter={}
+            onDragLeave={}
+            onDragOver={}
+        >
             <div className="disk__btns">
                 {currentDir &&  <button
                     className="disk__back"
@@ -57,7 +62,11 @@ function Disk() {
             <PopUp/>
         </div>
             :
-            <div></div>
+            <div className={"drop-area"}
+                onDragEnter={}
+                onDragLeave={}
+                onDragOver={}
+            ></div>
     );
 }
 
