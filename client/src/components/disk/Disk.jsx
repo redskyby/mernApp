@@ -33,7 +33,7 @@ function Disk() {
         event.preventDefault();
         event.stopPropagation();
         setDragEnter(true);
-        console.log(dragEnter);
+
     }
 
     function dragLeaveHandler(event) {
@@ -42,7 +42,15 @@ function Disk() {
         setDragEnter(false);
     }
 
-    return ( !dragEnter?
+    function dropHandler(event) {
+        event.preventDefault()
+        event.stopPropagation()
+        let files = [...event.dataTransfer.files]
+        files.forEach(file => dispatch(upLoadFile(file, currentDir)))
+        setDragEnter(false)
+    }
+
+    return ( !dragEnter ?
         <div
             className="disk"
             onDragEnter={dragEnterHandler}
@@ -76,6 +84,7 @@ function Disk() {
         </div>
             :
             <div className="drop-area"
+                 onDrop={dropHandler}
                  onDragEnter={dragEnterHandler}
                  onDragLeave={dragLeaveHandler}
                  onDragOver={dragEnterHandler}
