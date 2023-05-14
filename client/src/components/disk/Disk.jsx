@@ -29,12 +29,25 @@ function Disk() {
         files.forEach(file =>dispatch(upLoadFile(file , currentDir)))
     }
 
+    function dragEnterHandler(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        setDragEnter(true);
+        console.log(dragEnter);
+    }
+
+    function dragLeaveHandler(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        setDragEnter(false);
+    }
+
     return ( !dragEnter?
         <div
             className="disk"
-            onDragEnter={}
-            onDragLeave={}
-            onDragOver={}
+            onDragEnter={dragEnterHandler}
+            onDragLeave={dragLeaveHandler}
+            onDragOver={dragEnterHandler}
         >
             <div className="disk__btns">
                 {currentDir &&  <button
@@ -62,11 +75,11 @@ function Disk() {
             <PopUp/>
         </div>
             :
-            <div className={"drop-area"}
-                onDragEnter={}
-                onDragLeave={}
-                onDragOver={}
-            ></div>
+            <div className="drop-area"
+                 onDragEnter={dragEnterHandler}
+                 onDragLeave={dragLeaveHandler}
+                 onDragOver={dragEnterHandler}
+            >Перетащите файлы сюда</div>
     );
 }
 
