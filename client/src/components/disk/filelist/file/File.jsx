@@ -4,6 +4,7 @@ import dirLogo from '../../../../assets/dir.svg';
 import fileLogo from '../../../../assets/file.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {PUSH_TO_STACK, SET_CURRENT_DIR} from "../../../../redux/slice/FileSlice";
+import {downloadFile} from "../../../../actions/file";
 
 
 function File({file}) {
@@ -17,8 +18,9 @@ function File({file}) {
         }
     }
 
-    function downloadClickerHandler() {
-
+    function downloadClickerHandler(e) {
+            e.stopPropagation();
+            downloadFile(file);
     }
 
     return (
@@ -32,7 +34,7 @@ function File({file}) {
             <div className="file__size">{file.size}</div>
             {file.type !== 'dir' &&
                 <button
-                    onClick={()=> downloadClickerHandler()}
+                    onClick={(e)=> downloadClickerHandler(e)}
                     type="button"
                     className='file__btn file__download'
                 >download</button>

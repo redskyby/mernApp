@@ -61,7 +61,7 @@ export function upLoadFile(file , dirId) {
 }
 
 export async function downloadFile(file){
-        const response = await fetch(`http://localhost:5000/api/files/download?id=${file.id}`,{
+        const response = await fetch(`http://localhost:5000/api/files/download?id=${file._id}`,{
             headers : {
                 Authorization : `Bearer ${localStorage.getItem('token')} `
             }
@@ -72,7 +72,7 @@ export async function downloadFile(file){
             const link = document.createElement('a');
             link.href = downloadUrl;
             link.download = file.name;
-            document.appendChild(link);
+            document.body.appendChild(link);
             link.click();
             link.remove();
         }
