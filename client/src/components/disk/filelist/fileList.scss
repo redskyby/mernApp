@@ -3,7 +3,7 @@
 
   &__header {
     display: grid;
-    grid-template-columns: 1fr 4fr repeat(4, 1fr);
+    grid-template-columns: 1fr 4fr repeat(4, 1fr)
   }
 
   &__name {
@@ -16,5 +16,13 @@
   &__size {
     grid-column-start: 6;
     justify-self: center;
+  }
+   &__change__place__date {
+    grid-column-start: 3;
+     text-align: center;
+  }
+  &__change__place__size {
+    grid-column-start: 4;
+    text-align: center;
   }
 }

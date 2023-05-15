@@ -7,7 +7,7 @@ import {PUSH_TO_STACK, SET_CURRENT_DIR} from "../../../../redux/slice/FileSlice"
 import {downloadFile} from "../../../../actions/file";
 
 
-function File({file}) {
+function File({file , setCheckPlace}) {
     const dispatch = useDispatch();
     const currentDir = useSelector(state => state.fileToolkit.currentDir);
 
@@ -27,6 +27,16 @@ function File({file}) {
         <div
             className='file'
             onClick={() => openDirHandler(file)}
+
+            onMouseOver={(e)=> {
+                e.stopPropagation();
+                setCheckPlace(true)
+            }}
+
+            onMouseLeave={(e)=> {
+                e.stopPropagation();
+                setCheckPlace(false)
+            }}
         >
             <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file__img"/>
             <div className="file__name">{file.name}</div>

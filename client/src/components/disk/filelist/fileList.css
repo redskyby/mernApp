@@ -16,5 +16,13 @@
   grid-column-start: 6;
   justify-self: center;
 }
+.filelist__change__place__date {
+  grid-column-start: 3;
+  text-align: center;
+}
+.filelist__change__place__size {
+  grid-column-start: 4;
+  text-align: center;
+}
 
 /*# sourceMappingURL=fileList.css.map */
