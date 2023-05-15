@@ -12,6 +12,7 @@
   }
   &__img {
     justify-self: center;
+    transition: all 0.5s ;
   }
 
   &__date {
@@ -24,20 +25,25 @@
   }
   &__btn {
     display: none;
+    transition: all 0.5s ;
   }
 
   &:hover &__date {
     grid-column-start: 3;
+    transition: all 0.5s ;
   }
   &:hover &__size {
     grid-column-start: 4;
+    transition: all 0.5s ;
   }
   &:hover &__download {
     grid-column-start: 5;
     display: block;
+    transition: all 0.5s ;
   }
   &:hover &__delete {
     grid-column-start: 6;
     display: block;
+    transition: all 0.5s ;
   }
 }

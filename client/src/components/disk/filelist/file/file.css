@@ -10,6 +10,7 @@
 }
 .file__img {
   justify-self: center;
+  transition: all 0.5s;
 }
 .file__date {
   grid-column-start: 5;
@@ -21,20 +22,25 @@
 }
 .file__btn {
   display: none;
+  transition: all 0.5s;
 }
 .file:hover .file__date {
   grid-column-start: 3;
+  transition: all 0.5s;
 }
 .file:hover .file__size {
   grid-column-start: 4;
+  transition: all 0.5s;
 }
 .file:hover .file__download {
   grid-column-start: 5;
   display: block;
+  transition: all 0.5s;
 }
 .file:hover .file__delete {
   grid-column-start: 6;
   display: block;
+  transition: all 0.5s;
 }
 
 /*# sourceMappingURL=file.css.map */

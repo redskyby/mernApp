@@ -43,7 +43,7 @@ export function upLoadFile(file , dirId) {
             }
             const response = await axios.post(`http://localhost:5000/api/files/upload`, formData ,{
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
-                onUploadProgress :( progressEvent , event)=> {
+                onUploadProgress :( progressEvent )=> {
 
                         const totalLength = progressEvent.event.lengthComputable ? progressEvent.total : progressEvent.event.target.getResponseHeader('content-length') || progressEvent.event.target.getResponseHeader('x-decompressed-content-length');
                         console.log('total', totalLength);
@@ -60,4 +60,8 @@ export function upLoadFile(file , dirId) {
             alert(e.response.data.message);
         }
     }
+}
+
+export function downloadFile(){
+
 }
