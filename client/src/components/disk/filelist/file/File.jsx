@@ -26,8 +26,9 @@ function File({file}) {
             <div className="file__name">{file.name}</div>
             <div className="file__date">{file.date.slice(0, 10)}</div>
             <div className="file__size">{file.size}</div>
+            <button type="button" className='file__btn file__download'>download</button>
+            <button type="button" className='file__btn file__delete'>delete</button>
         </div>
-
     );
 }
 
