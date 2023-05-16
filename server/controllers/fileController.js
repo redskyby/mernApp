@@ -64,11 +64,15 @@ class fileController{
                 file.mv(path);
 
                 const type = file.name.split('.').pop();
+                let filePath = file.name;
+                if(parent){
+                    filePath = parent.path + "\\" + file.name;
+                }
                 const dbFile = new File({
                     name : file.name,
                     type,
                     size : file.size,
-                    path : parent?.path,
+                    path : filePath,
                     parent : parent?._id,
                     user : user._id
                 })
