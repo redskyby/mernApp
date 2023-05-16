@@ -99,6 +99,10 @@ class fileController{
                 res.status(500).json({message : "Download error"});
             }
     }
+
+    async deleteFile(req , res){
+
+    }
 }
 module.exports = new fileController();
 
