@@ -18,6 +18,9 @@ class FileService{
             }
         }))
     }
+    deleteFile(file){
+
+    }
 }
 
 module.exports = new FileService();
