@@ -101,7 +101,14 @@ class fileController{
     }
 
     async deleteFile(req , res){
-
+            try {
+                const file = await File.findOne({_id : req.query.id , user : req.user.id});
+                if(!file){
+                    return res.status(400).json({message : 'file is not found'});
+                }
+            }catch (e) {
+                console.log(e);
+            }
     }
 }
 module.exports = new fileController();
