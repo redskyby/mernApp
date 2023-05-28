@@ -26,6 +26,10 @@ class FileService{
             fs.unlinkSync(path);
         }
     }
+
+    getPath(file) {
+        return config.get('filePath') + '\\' + file.user + '\\' + file.path;
+    }
 }
 
 module.exports = new FileService();
