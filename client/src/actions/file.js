@@ -77,3 +77,14 @@ export async function downloadFile(file){
             link.remove();
         }
 }
+
+export function deleteFile(file , dirId) {
+    return async dispatch => {
+        try {
+
+            dispatch(ADD_FILE(response.data));
+        } catch (e) {
+            alert(e.response.data.message);
+        }
+    }
+}
