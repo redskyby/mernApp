@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ADD_FILE, SET_FILES} from "../redux/slice/FileSlice";
+import {ADD_FILE, DELETE_FILE, SET_FILES} from "../redux/slice/FileSlice";
 
 export function getFiles(dirId){
     return async dispatch =>{
@@ -78,7 +78,7 @@ export async function downloadFile(file){
         }
 }
 
-export function deleteFile(file , dirId) {
+export function deleteFile(file ){
     return async dispatch => {
         try {
             const response = await axios.delete(`http://localhost:5000/api/files?id/${file._id}`,{
@@ -86,7 +86,8 @@ export function deleteFile(file , dirId) {
                     Authorization : `Bearer ${localStorage.getItem('token')} `
                 }
             })
-            dispatch(ADD_FILE(response.data));
+            dispatch(DELETE_FILE(file._id));
+            alert(response.data.message);
         } catch (e) {
             alert(e.response.data.message);
         }

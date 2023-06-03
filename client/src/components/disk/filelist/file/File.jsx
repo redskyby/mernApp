@@ -3,7 +3,7 @@ import './file.css';
 import dirLogo from '../../../../assets/dir.svg';
 import fileLogo from '../../../../assets/file.svg';
 import {useDispatch, useSelector} from "react-redux";
-import {PUSH_TO_STACK, SET_CURRENT_DIR} from "../../../../redux/slice/FileSlice";
+import {DELETE_FILE, PUSH_TO_STACK, SET_CURRENT_DIR} from "../../../../redux/slice/FileSlice";
 import {downloadFile} from "../../../../actions/file";
 
 
@@ -21,6 +21,11 @@ function File({file , setCheckPlace}) {
     function downloadClickerHandler(e) {
             e.stopPropagation();
             downloadFile(file);
+    }
+
+    function deleteClickHandler(e) {
+        e.stopPropagation();
+        dispatch(DELETE_FILE(file));
     }
 
     return (
@@ -49,7 +54,11 @@ function File({file , setCheckPlace}) {
                     className='file__btn file__download'
                 >download</button>
             }
-            <button type="button" className='file__btn file__delete'>delete</button>
+            <button
+                onClick={(e) => deleteClickHandler(e)}
+                type="button"
+                className='file__btn file__delete'
+            >delete</button>
         </div>
     );
 }
