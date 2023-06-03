@@ -81,7 +81,11 @@ export async function downloadFile(file){
 export function deleteFile(file , dirId) {
     return async dispatch => {
         try {
-
+            const response = await axios.delete(`http://localhost:5000/api/files?id/${file._id}`,{
+                headers : {
+                    Authorization : `Bearer ${localStorage.getItem('token')} `
+                }
+            })
             dispatch(ADD_FILE(response.data));
         } catch (e) {
             alert(e.response.data.message);

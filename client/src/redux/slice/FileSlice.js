@@ -23,11 +23,14 @@ const fileSlice = createSlice({
         SET_POPUP_DISPLAY: (state, action) =>{
             state.popUpDisplay = action.payload;
         },
-        PUSH_TO_STACK : (state, action) =>{
-            state.dirStack = [...state.dirStack , action.payload];
+        PUSH_TO_STACK: (state, action) => {
+            state.dirStack = [...state.dirStack, action.payload];
         },
-        POP_TO_STACK : (state) =>{
-           state.currentDir =  state.dirStack.pop();
+        POP_TO_STACK: (state) => {
+            state.currentDir = state.dirStack.pop();
+        },
+        DELETE_FILE: (state, action) => {
+            state.files = [...files.filter(file => file._id != action.payload)];
         }
     }
 });
@@ -40,5 +43,6 @@ export const {
     ADD_FILE,
     SET_POPUP_DISPLAY,
     PUSH_TO_STACK,
-    POP_TO_STACK
+    POP_TO_STACK,
+    DELETE_FILE
              } = fileSlice.actions;
