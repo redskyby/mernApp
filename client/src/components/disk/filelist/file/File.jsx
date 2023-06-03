@@ -4,7 +4,7 @@ import dirLogo from '../../../../assets/dir.svg';
 import fileLogo from '../../../../assets/file.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {DELETE_FILE, PUSH_TO_STACK, SET_CURRENT_DIR} from "../../../../redux/slice/FileSlice";
-import {downloadFile} from "../../../../actions/file";
+import {deleteFile, downloadFile} from "../../../../actions/file";
 
 
 function File({file , setCheckPlace}) {
@@ -25,7 +25,7 @@ function File({file , setCheckPlace}) {
 
     function deleteClickHandler(e) {
         e.stopPropagation();
-        dispatch(DELETE_FILE(file));
+        dispatch(deleteFile(file));
     }
 
     return (

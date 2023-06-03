@@ -89,8 +89,7 @@ class fileController{
     async downloadFile(req , res){
             try{
                 const file = await  File.findOne({_id : req.query.id , user : req.user.id});
-                // const path = config.get('filePath') + '\\' + req.user.id + '\\' + file.path + '\\' + file.name;
-                const path = config.get('filePath') + '\\' + req.user.id + '\\' + file.path ;
+                const path = config.get('filePath') + '\\' + req.user.id + '\\' + file.path;
                 if(fs.existsSync(path)){
                     return res.download(path);
                 }
@@ -108,7 +107,7 @@ class fileController{
                     return res.status(400).json({message : 'file is not found'});
                 }
                 fileService.deleteFile(file);
-                await file.remove();
+                await file.deleteOne();
                 return res.json({message : 'File was deleted.'});
             }catch (e) {
                 console.log(e);
