@@ -5,6 +5,7 @@ import {getFiles, upLoadFile} from "../../actions/file";
 import FileList from "./filelist/FileList";
 import './disk.css';
 import PopUp from "./PopUp";
+import Uploader from "./uploader/Uploader";
 
 function Disk() {
     const dispatch = useDispatch();
@@ -81,6 +82,7 @@ function Disk() {
             </div>
             <FileList/>
             <PopUp/>
+            <Uploader/>
         </div>
             :
             <div className="drop-area"

@@ -1,8 +1,9 @@
 import React from 'react';
 import "./uploader.css";
+import UploadFile from "./UploadFile";
 
 function Uploader() {
-
+    const files = [];
     return (
         <div>
             <div className="uploader">
@@ -11,6 +12,11 @@ function Uploader() {
                     <button type="button">X</button>
                 </div>
             </div>
+            {
+                files.map(file =>
+                    <UploadFile key={file.id} file={file} />
+                )
+            }
         </div>
     );
 }
