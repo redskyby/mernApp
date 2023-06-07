@@ -2,6 +2,7 @@ import React from 'react';
 import "./uploader.css";
 
 function Uploader() {
+
     return (
         <div>
             <div className="uploader">
