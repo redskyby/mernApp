@@ -13,8 +13,8 @@ function UploadFile({file}) {
                 >X</button>
             </div>
             <div className="upload-file__progress-bar">
-                <div className="upload-file__progress-bar" style={{width: file.progress + "%"}}/>
-                <div className="upload-file__progress-bar">{file.progress}%</div>
+                <div className="upload-file__upload-bar" style={{width: file.progress + "%"}}/>
+                <div className="upload-file__percent">{file.progress}%</div>
             </div>
         </div>
     );
