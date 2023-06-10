@@ -16,7 +16,7 @@ const upload = createSlice({
             state.isVisitable = false;
         },
         ADD_UPLOADER_FILE : (state, action)=>{
-            state.files = [...state.files ,{...action.payload , id : state.files.length}];
+            state.files = [...state.files , action.payload ];
         },
         REMOVE_UPLOAD_FILE: (state, action)=>{
             state.files = [...state.files.filter(file => file.id !== action.payload)]

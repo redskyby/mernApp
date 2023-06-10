@@ -1,6 +1,6 @@
 import axios from "axios";
 import {ADD_FILE, DELETE_FILE, SET_FILES} from "../redux/slice/FileSlice";
-import {ADD_UPLOADER_FILE, SHOW_UPLOADER} from "../redux/slice/UploadSlice";
+import {ADD_UPLOADER_FILE, CHANGE_UPLOAD_FILE, SHOW_UPLOADER} from "../redux/slice/UploadSlice";
 
 export function getFiles(dirId){
     return async dispatch =>{
@@ -42,7 +42,7 @@ export function upLoadFile(file , dirId) {
             if(dirId){
                 formData.append('parent' , dirId);
             }
-            const uploadFile = {name : file.name , progress : 0};
+            const uploadFile = {name : file.name , progress : 0 , id : Date.now()};
             dispatch(SHOW_UPLOADER());
             dispatch(ADD_UPLOADER_FILE(uploadFile));
             const response = await axios.post(`http://localhost:5000/api/files/upload`, formData ,{
@@ -52,8 +52,8 @@ export function upLoadFile(file , dirId) {
                         const totalLength = progressEvent.event.lengthComputable ? progressEvent.total : progressEvent.event.target.getResponseHeader('content-length') || progressEvent.event.target.getResponseHeader('x-decompressed-content-length');
                         console.log('total', totalLength);
                         if (totalLength ) {
-                            let progress = Math.round((progressEvent.loaded * 100) / totalLength);
-                            console.log(progress);
+                            upLoadFile.progress = Math.round((progressEvent.loaded * 100) / totalLength);
+                            dispatch(CHANGE_UPLOAD_FILE(upLoadFile));
                         }
                 }
             });
