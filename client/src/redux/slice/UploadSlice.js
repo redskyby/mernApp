@@ -19,7 +19,7 @@ const upload = createSlice({
             state.files = [...state.files ,{...action.payload , id : state.files.length}];
         },
         REMOVE_UPLOAD_FILE: (state, action)=>{
-            state.files = [...state.files.filter(file => file !== action.payload)]
+            state.files = [...state.files.filter(file => file.id !== action.payload)]
         }
     }
 });
