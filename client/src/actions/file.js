@@ -1,5 +1,6 @@
 import axios from "axios";
 import {ADD_FILE, DELETE_FILE, SET_FILES} from "../redux/slice/FileSlice";
+import {ADD_UPLOADER_FILE, SHOW_UPLOADER} from "../redux/slice/UploadSlice";
 
 export function getFiles(dirId){
     return async dispatch =>{
@@ -41,6 +42,9 @@ export function upLoadFile(file , dirId) {
             if(dirId){
                 formData.append('parent' , dirId);
             }
+            const uploadFile = {name : file.name , progress : 0};
+            dispatch(SHOW_UPLOADER());
+            dispatch(ADD_UPLOADER_FILE(uploadFile));
             const response = await axios.post(`http://localhost:5000/api/files/upload`, formData ,{
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
                 onUploadProgress :( progressEvent )=> {
