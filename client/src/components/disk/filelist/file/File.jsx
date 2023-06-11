@@ -3,8 +3,9 @@ import './file.css';
 import dirLogo from '../../../../assets/dir.svg';
 import fileLogo from '../../../../assets/file.svg';
 import {useDispatch, useSelector} from "react-redux";
-import {DELETE_FILE, PUSH_TO_STACK, SET_CURRENT_DIR} from "../../../../redux/slice/FileSlice";
+import { PUSH_TO_STACK, SET_CURRENT_DIR} from "../../../../redux/slice/FileSlice";
 import {deleteFile, downloadFile} from "../../../../actions/file";
+import sizeFormat from "../../../../utils/sizeFormat";
 
 
 function File({file , setCheckPlace}) {
@@ -46,7 +47,7 @@ function File({file , setCheckPlace}) {
             <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file__img"/>
             <div className="file__name">{file.name}</div>
             <div className="file__date">{file.date.slice(0, 10)}</div>
-            <div className="file__size">{file.size}</div>
+            <div className="file__size">{sizeFormat(file.size)}</div>
             {file.type !== 'dir' &&
                 <button
                     onClick={(e)=> downloadClickerHandler(e)}
