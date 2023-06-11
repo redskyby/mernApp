@@ -42,18 +42,19 @@ export function upLoadFile(file , dirId) {
             if(dirId){
                 formData.append('parent' , dirId);
             }
-            const uploadFile = {name : file.name , progress : 0 , id : Date.now()};
+            const uploadFile = {name: file.name, progress: 0, id: Date.now()}
             dispatch(SHOW_UPLOADER());
             dispatch(ADD_UPLOADER_FILE(uploadFile));
             const response = await axios.post(`http://localhost:5000/api/files/upload`, formData ,{
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
                 onUploadProgress :( progressEvent )=> {
-
                         const totalLength = progressEvent.event.lengthComputable ? progressEvent.total : progressEvent.event.target.getResponseHeader('content-length') || progressEvent.event.target.getResponseHeader('x-decompressed-content-length');
                         console.log('total', totalLength);
                         if (totalLength ) {
-                            upLoadFile.progress = Math.round((progressEvent.loaded * 100) / totalLength);
-                            dispatch(CHANGE_UPLOAD_FILE(upLoadFile));
+                            // uploadFile.progress = Math.round((progressEvent.loaded * 100) / totalLength)
+                            // dispatch(CHANGE_UPLOAD_FILE(uploadFile));
+                            const updatedFile = { ...uploadFile, progress: Math.round((progressEvent.loaded * 100) / totalLength) };
+                            dispatch(CHANGE_UPLOAD_FILE(updatedFile));
                         }
                 }
             });

@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     isVisitable: false,
-    files: [],
+    files: []
 }
 
 const upload = createSlice({
@@ -22,9 +22,9 @@ const upload = createSlice({
             state.files = [...state.files.filter(file => file.id !== action.payload)]
         },
         CHANGE_UPLOAD_FILE: (state, action)=>{
-            state.files = [...state.files.map(file => file.id === action.payload
-                    ?{...file, progress : action.payload.progress}
-                    :{...file}
+            state.files = [...state.files.map(file => file.id !== action.payload
+                    ? {...file, progress : action.payload.progress}
+                    : {...file}
             )];
         }
     }
