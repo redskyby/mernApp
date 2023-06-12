@@ -8,6 +8,11 @@ function FileList() {
     const [checkPlace, setCheckPlace] = useState(false);
     const files = useSelector(state => state.fileToolkit.files)
 
+    if(files.length === 0){
+        return (
+            <div className='loader'>Файлы не найдены.</div>
+        )
+    }
     return (
         <div className='filelist'>
             <div
