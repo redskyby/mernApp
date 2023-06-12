@@ -1,10 +1,12 @@
 import axios from "axios";
 import {ADD_FILE, DELETE_FILE, SET_FILES} from "../redux/slice/FileSlice";
 import {ADD_UPLOADER_FILE, CHANGE_UPLOAD_FILE, SHOW_UPLOADER} from "../redux/slice/UploadSlice";
+import {HIDE_LOADER, SHOW_LOADER} from "../redux/slice/AppSlice";
 
 export function getFiles(dirId){
     return async dispatch =>{
         try {
+            dispatch(SHOW_LOADER());
             const response = await axios.get(`http://localhost:5000/api/files${dirId ? '?parent='+dirId : ''}`,{
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
@@ -12,6 +14,8 @@ export function getFiles(dirId){
             //console.log(response.data);
         }catch (e) {
             alert(e.response.data.message);
+        }finally {
+            dispatch(HIDE_LOADER());
         }
     }
 }
