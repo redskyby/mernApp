@@ -10,6 +10,7 @@ import Uploader from "./uploader/Uploader";
 function Disk() {
     const dispatch = useDispatch();
     const currentDir = useSelector(state => state.fileToolkit.currentDir);
+    const loader = useSelector(state => state.appToolKit.loader);
     const dirStack = useSelector(state => state.fileToolkit.dirStack);
     const [dragEnter , setDragEnter] = useState(false);
 
@@ -49,6 +50,14 @@ function Disk() {
         let files = [...event.dataTransfer.files]
         files.forEach(file => dispatch(upLoadFile(file, currentDir)))
         setDragEnter(false)
+    }
+
+    if(loader) {
+        return (
+            <div className="loader">
+                <div className="lds-dual-ring"></div>
+            </div>
+        )
     }
 
     return ( !dragEnter ?
