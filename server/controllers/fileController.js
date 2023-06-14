@@ -114,6 +114,10 @@ class fileController{
                 return res.status(400).json({message : "Dir is nor empty."});
             }
     }
+
+    async  searchFile(req, res){
+
+    }
 }
 module.exports = new fileController();
 
