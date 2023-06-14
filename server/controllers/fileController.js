@@ -116,7 +116,11 @@ class fileController{
     }
 
     async  searchFile(req, res){
+            try{
 
+            }catch (e) {
+                console.log(e);
+            }
     }
 }
 module.exports = new fileController();
