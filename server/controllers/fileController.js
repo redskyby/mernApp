@@ -117,7 +117,7 @@ class fileController{
 
     async  searchFile(req, res){
             try{
-
+                const searchName = req.query.search;
             }catch (e) {
                 console.log(e);
                 return res.status(500).json({message: "Search error"});
