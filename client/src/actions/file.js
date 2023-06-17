@@ -106,13 +106,12 @@ export function deleteFile(file) {
 export function searchFiles(search) {
     return async dispatch => {
         try {
-            const response = await axios.delete(`http://localhost:5000/api/files`, {
+            const response = await axios.get(`http://localhost:5000/api/files/search?search=${search}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            dispatch(DELETE_FILE(file._id));
-            alert(response.data.message);
+            dispatch(SET_FILES(response.data));
         } catch (e) {
             alert(e.response.data.message);
         }
