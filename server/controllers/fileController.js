@@ -120,8 +120,7 @@ class fileController{
                 const searchName = req.query.search;
                 let files = await File.findOne({user : req.user.id});
                 files = files.filter(file => file.name.includes(searchName));
-                return res.json({files});
-
+                return res.json(files);
             }catch (e) {
                 console.log(e);
                 return res.status(500).json({message: "Search error"});

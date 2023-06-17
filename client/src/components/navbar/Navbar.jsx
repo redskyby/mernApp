@@ -4,6 +4,7 @@ import Logo from '../../assets/navbar-logo.svg'
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {LOG_OUT} from "../../redux/slice/UserSlice";
+import {searchFiles} from "../../actions/file";
 
 
 function Navbar () {
@@ -13,6 +14,7 @@ function Navbar () {
 
     function  searchChangeHandker(e){
         setSearchName(e.target.value);
+        dispatch(searchFiles(e.target.value));
     }
     return (
         <div className="navbar">
