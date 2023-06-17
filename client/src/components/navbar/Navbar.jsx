@@ -13,7 +13,6 @@ function Navbar () {
 
     function  searchChangeHandker(e){
         setSearchName(e.target.value);
-        console.log(searchName);
     }
     return (
         <div className="navbar">
