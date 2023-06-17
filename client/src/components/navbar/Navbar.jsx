@@ -7,31 +7,34 @@ import {LOG_OUT} from "../../redux/slice/UserSlice";
 import {searchFiles} from "../../actions/file";
 
 
-function Navbar () {
+function Navbar() {
     const isAuth = useSelector(state => state.userToolkit.isAuth);
     const dispatch = useDispatch()
     const [searchName, setSearchName] = useState('');
 
-    function  searchChangeHandker(e){
+    function searchChangeHandker(e) {
         setSearchName(e.target.value);
         dispatch(searchFiles(e.target.value));
     }
+
     return (
         <div className="navbar">
             <div className="container">
                 <img src={Logo} alt="" className="navbar__logo"/>
                 <div className="navbar__header">MERN CLOUD</div>
                 {isAuth && <input
+                    className='navbar__search'
                     placeholder="Название файла"
                     type="text"
                     value={searchName}
                     onChange={e => searchChangeHandker(e)}
                 />}
                 {!isAuth && <div className="navbar__login"><NavLink to="/login">Войти</NavLink></div>}
-                {!isAuth && <div className="navbar__registration"><NavLink to="/registration">Регистрация</NavLink></div>}
+                {!isAuth &&
+                    <div className="navbar__registration"><NavLink to="/registration">Регистрация</NavLink></div>}
                 {isAuth && <div
                     className="navbar__login"
-                     onClick={ ()=> dispatch(LOG_OUT())}
+                    onClick={() => dispatch(LOG_OUT())}
                 >Выход</div>}
             </div>
         </div>
