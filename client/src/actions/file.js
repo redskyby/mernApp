@@ -114,6 +114,8 @@ export function searchFiles(search) {
             dispatch(SET_FILES(response.data));
         } catch (e) {
             alert(e.response.data.message);
+        }finally {
+            dispatch(HIDE_LOADER())
         }
     }
 }

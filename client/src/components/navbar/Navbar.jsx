@@ -4,17 +4,30 @@ import Logo from '../../assets/navbar-logo.svg'
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {LOG_OUT} from "../../redux/slice/UserSlice";
-import {searchFiles} from "../../actions/file";
+import {getFiles, searchFiles} from "../../actions/file";
+import {SHOW_LOADER} from "../../redux/slice/AppSlice";
 
 
 function Navbar() {
     const isAuth = useSelector(state => state.userToolkit.isAuth);
+    const currentDir = useSelector(state => state.userToolkit.currentDir);
     const dispatch = useDispatch()
     const [searchName, setSearchName] = useState('');
+    const [searchTimeout, setSearchTimeout] = useState(false);
 
     function searchChangeHandker(e) {
         setSearchName(e.target.value);
-        dispatch(searchFiles(e.target.value));
+        if (searchTimeout !== false) {
+            clearTimeout(searchTimeout);
+        }
+        dispatch(SHOW_LOADER())
+        if (e.target.value !== '') {
+            setSearchTimeout(setTimeout((value) => {
+                dispatch(searchFiles(value));
+            }, 500, e.target.value));
+        }else{
+            dispatch(getFiles(currentDir))
+        }
     }
 
     return (
