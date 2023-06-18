@@ -3,18 +3,28 @@ import {ADD_FILE, DELETE_FILE, SET_FILES} from "../redux/slice/FileSlice";
 import {ADD_UPLOADER_FILE, CHANGE_UPLOAD_FILE, SHOW_UPLOADER} from "../redux/slice/UploadSlice";
 import {HIDE_LOADER, SHOW_LOADER} from "../redux/slice/AppSlice";
 
-export function getFiles(dirId){
-    return async dispatch =>{
+export function getFiles(dirId, sort) {
+    return async dispatch => {
         try {
             dispatch(SHOW_LOADER());
-            const response = await axios.get(`http://localhost:5000/api/files${dirId ? '?parent='+dirId : ''}`,{
+            let url = `http://localhost:5000/api/files`;
+            if (dirId) {
+                url = `http://localhost:5000/api/files?parent=${dirId}`;
+            }
+            if (sort) {
+                url = `http://localhost:5000/api/files?sort=${sort}`;
+            }
+            if (dirId && sort) {
+                url = `http://localhost:5000/api/files?parent=${dirId}&sort=${sort}`;
+            }
+            const response = await axios.get(url, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
             dispatch(SET_FILES(response.data));
             //console.log(response.data);
-        }catch (e) {
+        } catch (e) {
             alert(e.response.data.message);
-        }finally {
+        } finally {
             dispatch(HIDE_LOADER());
         }
     }
