@@ -98,8 +98,8 @@ function Disk() {
                     <option value="type">По типу</option>
                     <option value="date">По дате</option>
                 </select>
-                <button className="disk__plate"></button>
-                <button className="disk__list"></button>
+                <button className="disk__plate"/>
+                <button className="disk__list"/>
             </div>
             <FileList/>
             <PopUp/>

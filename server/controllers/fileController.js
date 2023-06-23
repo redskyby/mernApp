@@ -4,7 +4,6 @@ const File = require('../models/File');
 const config = require('config');
 const fs = require('fs');
 
-
 class fileController {
     async createDir(req, res) {
         try {
