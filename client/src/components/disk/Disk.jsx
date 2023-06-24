@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {POP_TO_STACK,  SET_POPUP_DISPLAY} from "../../redux/slice/FileSlice";
+import {POP_TO_STACK,  SET_POPUP_DISPLAY , SET_VIEW} from "../../redux/slice/FileSlice";
 import {getFiles, upLoadFile} from "../../actions/file";
 import FileList from "./filelist/FileList";
 import './disk.css';
@@ -98,8 +98,8 @@ function Disk() {
                     <option value="type">По типу</option>
                     <option value="date">По дате</option>
                 </select>
-                <button className="disk__plate"/>
-                <button className="disk__list"/>
+                <button className="disk__plate" onClick={()=>dispatch(SET_VIEW('plate'))}/>
+                <button className="disk__list" onClick={()=>dispatch(SET_VIEW('list'))}/>
             </div>
             <FileList/>
             <PopUp/>
