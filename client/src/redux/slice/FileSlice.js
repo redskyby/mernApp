@@ -4,7 +4,8 @@ const initialState = {
     files: [],
     currentDir: null,
     popUpDisplay : 'none',
-    dirStack : []
+    dirStack : [],
+    view : 'list'
 }
 
 const fileSlice = createSlice({
@@ -31,6 +32,9 @@ const fileSlice = createSlice({
         },
         DELETE_FILE: (state, action) => {
              state.files = [...state.files.filter(file => file._id !== action.payload)];
+        },
+        SET_VIEW : (state, action)=>{
+                state.view = action.payload;
         }
     }
 });
@@ -44,5 +48,6 @@ export const {
     SET_POPUP_DISPLAY,
     PUSH_TO_STACK,
     POP_TO_STACK,
-    DELETE_FILE
+    DELETE_FILE,
+    SET_VIEW
              } = fileSlice.actions;
