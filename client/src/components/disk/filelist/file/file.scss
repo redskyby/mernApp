@@ -2,7 +2,7 @@
 
 .file {
   margin: 10px 0;
-  border-bottom: solid 2px $font-color ;
+  border-bottom: solid 2px $font-color;
   display: grid;
   grid-template-columns: 1fr 4fr repeat(4, 1fr);
   align-items: center;
@@ -10,40 +10,68 @@
   &:hover {
     transform: scale(1.02);
   }
+
   &__img {
     justify-self: center;
-    transition: all 0.5s ;
+    transition: all 0.5s;
   }
 
   &__date {
     grid-column-start: 5;
     justify-self: center;
   }
+
   &__size {
     grid-column-start: 6;
     justify-self: center;
   }
+
   &__btn {
     display: none;
-    transition: all 0.5s ;
+    transition: all 0.5s;
   }
 
   &:hover &__date {
     grid-column-start: 3;
-    transition: all 0.5s ;
+    transition: all 0.5s;
   }
+
   &:hover &__size {
     grid-column-start: 4;
-    transition: all 0.5s ;
+    transition: all 0.5s;
   }
+
   &:hover &__download {
     grid-column-start: 5;
     display: block;
-    transition: all 0.5s ;
+    transition: all 0.5s;
   }
+
   &:hover &__delete {
     grid-column-start: 6;
     display: block;
-    transition: all 0.5s ;
+    transition: all 0.5s;
+  }
+}
+
+.file-plate {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__img {
+    height: 100px;
+    width: 100px;
+  }
+
+  &__btns {
+    display: none;
+  }
+
+  &:hover &__btns {
+    display: flex;
   }
 }
