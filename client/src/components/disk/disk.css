@@ -30,10 +30,10 @@
   margin: 0 10px;
 }
 .disk__list {
-  background-image: url("../../assets/img/list.svg");
+  background-image: url("../../assets/list.svg");
 }
 .disk__plate {
-  background-image: url("../../assets/img/plate.svg");
+  background-image: url("../../assets/plate.svg");
 }
 
 .drop-area {
