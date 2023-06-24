@@ -6,38 +6,52 @@ import {CSSTransition, TransitionGroup} from "react-transition-group";
 
 function FileList() {
     const [checkPlace, setCheckPlace] = useState(false);
-    const files = useSelector(state => state.fileToolkit.files)
+    const files = useSelector(state => state.fileToolkit.files);
+    const fileView = useSelector(state => state.fileToolkit.view);
 
-    if(files.length === 0){
+    if (files.length === 0) {
         return (
             <div className='loader'>Файлы не найдены.</div>
         )
     }
-    return (
-        <div className='filelist'>
-            <div
-                className="filelist__header"
-            >
-                <div className="filelist__name">Название</div>
-                <div className={checkPlace ? "filelist__change__place__date" : "filelist__date"}>Дата</div>
-                <div className={checkPlace ? "filelist__change__place__size" : "filelist__size"}>Размер</div>
+    if (fileView === 'plate') {
+        return (
+            <div className='fileplate'>
+                {files.map(file =>
+                    <File key={file._id} file={file} setCheckPlace={setCheckPlace}/>
+                )}
             </div>
-            <TransitionGroup>
-                {
-                    files.map(file =>
-                        <CSSTransition
-                            key={file._id}
-                            timeout={500}
-                            classNames={'file'}
-                            exit={false}
-                        >
-                            <File file={file} setCheckPlace={setCheckPlace}/>
-                        </CSSTransition>
-                    )
-                }
-            </TransitionGroup>
-        </div>
-    );
+        );
+    }
+
+
+    if (fileView === 'list') {
+        return (
+            <div className='filelist'>
+                <div
+                    className="filelist__header"
+                >
+                    <div className="filelist__name">Название</div>
+                    <div className={checkPlace ? "filelist__change__place__date" : "filelist__date"}>Дата</div>
+                    <div className={checkPlace ? "filelist__change__place__size" : "filelist__size"}>Размер</div>
+                </div>
+                <TransitionGroup>
+                    {
+                        files.map(file =>
+                            <CSSTransition
+                                key={file._id}
+                                timeout={500}
+                                classNames={'file'}
+                                exit={false}
+                            >
+                                <File file={file} setCheckPlace={setCheckPlace}/>
+                            </CSSTransition>
+                        )
+                    }
+                </TransitionGroup>
+            </div>
+        );
+    }
 }
 
 export default FileList;
