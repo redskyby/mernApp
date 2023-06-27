@@ -129,6 +129,7 @@ server/static
 .pnp.js
 # ignore user's folder
 /files
+/static
 # testing
 /coverage
 
