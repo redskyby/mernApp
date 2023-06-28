@@ -3,6 +3,7 @@ const User = require('../models/User');
 const File = require('../models/File');
 const config = require('config');
 const fs = require('fs');
+const uuid = require('uuid');
 
 class fileController {
     async createDir(req, res) {
@@ -142,6 +143,21 @@ class fileController {
         } catch (e) {
             console.log(e);
             return res.status(500).json({message: "Search error"});
+        }
+    }
+
+    async uploadAvatar(req , res){
+        try{
+            const file = req.files.file;
+            const user = await User.findOne(req.use.id);
+            const avatarName = uuid.v4() + '.jpg';
+            file.mv(config.get('staticPath') + '\\' + avatarName);
+            user.avatar = avatarName;
+            await  user.save();
+            return res.json({message : "Avatar was uploaded."});
+        }catch (e) {
+            console.log(e);
+            return res.status(400).json({message: "Upload avatar error."});
         }
     }
 }
