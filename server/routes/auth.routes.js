@@ -12,11 +12,10 @@ const File = require('../models/File');
 const client = require('../redisClient');
 
 
-
 router.post('/registration',
     [
         check('email', "Uncorrect email").isEmail(),
-        check('password', 'Password must be longer than 3 and shorter than 12').isLength({min:3, max:12})
+        check('password', 'Password must be longer than 3 and shorter than 12').isLength({min: 3, max: 12})
     ],
     async (req, res) => {
         try {
@@ -26,13 +25,13 @@ router.post('/registration',
             }
             const {email, password} = req.body
             const candidate = await User.findOne({email})
-            if(candidate) {
+            if (candidate) {
                 return res.status(400).json({message: `User with email ${email} already exist`})
             }
             const hashPassword = await bcrypt.hash(password, 8)
             const user = new User({email, password: hashPassword})
             await user.save()
-            await fileService.createDir(new File({user:user.id, name: ''}))
+            await fileService.createDir(new File({user: user.id, name: ''}))
             res.json({message: "User was created"})
         } catch (e) {
             console.log(e)
@@ -77,12 +76,12 @@ router.get('/auth', authMiddleware,
             //ТУТ добавил Redis для кэша
             //Он работает
             const Cash_User = await client.get("User_cache");
-            if(Cash_User){
+            if (Cash_User) {
                 const Parse_User = JSON.parse(Cash_User);
                 const token = jwt.sign({id: Parse_User._id}, config.get("secretKey"), {expiresIn: "1h"});
                 return res.json({
                     token,
-                    user:{
+                    user: {
                         id: Parse_User._id,
                         email: Parse_User.email,
                         diskSpace: Parse_User.diskSpace,
@@ -94,7 +93,7 @@ router.get('/auth', authMiddleware,
 
             const user = await User.findOne({_id: req.user.id});
             const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"});
-            await  client.set("User_cache" , JSON.stringify(user));
+            await client.set("User_cache", JSON.stringify(user), {EX : 3600});
 
             return res.json({
                 token,
