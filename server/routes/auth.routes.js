@@ -74,9 +74,28 @@ router.post('/login',
 router.get('/auth', authMiddleware,
     async (req, res) => {
         try {
+            //ТУТ добавил Redis для кэша
+            //Он работает
+            const Cash_User = await client.get("User_cache");
+            if(Cash_User){
+                const Parse_User = JSON.parse(Cash_User);
+                const token = jwt.sign({id: Parse_User._id}, config.get("secretKey"), {expiresIn: "1h"});
+                return res.json({
+                    token,
+                    user:{
+                        id: Parse_User._id,
+                        email: Parse_User.email,
+                        diskSpace: Parse_User.diskSpace,
+                        userSpace: Parse_User.userSpace,
+                        avatar: Parse_User.avatar
+                    }
+                })
+            }
+
             const user = await User.findOne({_id: req.user.id});
             const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"});
-            
+            await  client.set("User_cache" , JSON.stringify(user));
+
             return res.json({
                 token,
                 user: {

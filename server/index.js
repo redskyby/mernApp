@@ -7,6 +7,7 @@ const fileRouter = require("./routes/file.routes");
 const app = express();
 const PORT = config.get("serverPort");
 const corsMiddleware = require('./middleware/cors.middleware')
+const client = require("./redisClient");
 
 
 
@@ -21,6 +22,7 @@ app.use("/api/files", fileRouter);
 
 const start = async () => {
     try {
+        await client.connect();
         await mongoose.connect(config.get('dbUrl'));
         app.listen(PORT, () => {
             console.log('Server started on post ', PORT);
