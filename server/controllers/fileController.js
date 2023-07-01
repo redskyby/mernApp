@@ -154,7 +154,7 @@ class fileController {
             file.mv(config.get('staticPath') + '\\' + avatarName);
             user.avatar = avatarName;
             await  user.save();
-            return res.json({message : "Avatar was uploaded."});
+            return res.json(user);
         }catch (e) {
             console.log(e);
             return res.status(400).json({message: "Upload avatar error."});
