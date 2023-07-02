@@ -14,6 +14,7 @@ function Navbar() {
     const dispatch = useDispatch()
     const [searchName, setSearchName] = useState('');
     const [searchTimeout, setSearchTimeout] = useState(false);
+    const avatar = null;
 
     function searchChangeHandker(e) {
         setSearchName(e.target.value);
@@ -42,6 +43,7 @@ function Navbar() {
                     value={searchName}
                     onChange={e => searchChangeHandker(e)}
                 />}
+                {isAuth && <img src={avatar} alt="user avatar"/>}
                 {!isAuth && <div className="navbar__login"><NavLink to="/login">Войти</NavLink></div>}
                 {!isAuth &&
                     <div className="navbar__registration"><NavLink to="/registration">Регистрация</NavLink></div>}
