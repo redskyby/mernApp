@@ -21,7 +21,6 @@ function App() {
     }, [])
 
 
-
     return (
         <BrowserRouter>
             <div className="app">
@@ -31,12 +30,12 @@ function App() {
                         <Routes>
                             <Route path="/registration" element={<Registration/>}/>
                             <Route path="/login" element={<Login/>}/>
-                            <Route path="*" element={<Navigate to="/login" replace /> } />
+                            <Route path="*" element={<Navigate to="/login" replace/>}/>
                         </Routes>
                         :
                         <Routes>
                             <Route path="/" element={<Disk/>}/>
-                            <Route path="*" element={<Navigate to="/" replace /> } />
+                            <Route path="*" element={<Navigate to="/" replace/>}/>
                         </Routes>
                     }
                 </div>

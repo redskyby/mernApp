@@ -6,15 +6,18 @@ import {useDispatch, useSelector} from "react-redux";
 import {LOG_OUT} from "../../redux/slice/UserSlice";
 import {getFiles, searchFiles} from "../../actions/file";
 import {SHOW_LOADER} from "../../redux/slice/AppSlice";
-
+import avatarLogo from '../../assets/avatar.svg';
+import {API_URL} from '../../config';
 
 function Navbar() {
     const isAuth = useSelector(state => state.userToolkit.isAuth);
-    const currentDir = useSelector(state => state.userToolkit.currentDir);
+    const currentDir = useSelector(state => state.fileToolkit.currentDir);
+    const currentUser = useSelector(state => state.userToolkit.currentUser);
     const dispatch = useDispatch()
     const [searchName, setSearchName] = useState('');
     const [searchTimeout, setSearchTimeout] = useState(false);
-    const avatar = null;
+    const avatar = currentUser.avatar ? `${API_URL + currentUser.avatar}` : avatarLogo;
+
 
     function searchChangeHandker(e) {
         setSearchName(e.target.value);
@@ -43,7 +46,6 @@ function Navbar() {
                     value={searchName}
                     onChange={e => searchChangeHandker(e)}
                 />}
-                {isAuth && <img src={avatar} alt="user avatar"/>}
                 {!isAuth && <div className="navbar__login"><NavLink to="/login">Войти</NavLink></div>}
                 {!isAuth &&
                     <div className="navbar__registration"><NavLink to="/registration">Регистрация</NavLink></div>}
@@ -51,6 +53,7 @@ function Navbar() {
                     className="navbar__login"
                     onClick={() => dispatch(LOG_OUT())}
                 >Выход</div>}
+                {isAuth && <img src={avatar} alt="user avatar"/>}
             </div>
         </div>
     );
