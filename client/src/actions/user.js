@@ -44,17 +44,17 @@ export const auth = () => {
     }
 }
 
-export const uploadAvatar  = () => {
+export const uploadAvatar = (file) => {
     return async dispatch => {
         try {
-            const response = await axios.get(`${API_URL}/api/auth/auth`,
+            const formData = new FormData();
+            formData.append('file', file);
+            const response = await axios.post(`${API_URL}/api/auth/avatar`, formData,
                 {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}}
             )
-            dispatch(SET_USER(response.data.user))
-            localStorage.setItem('token', response.data.token)
+            dispatch(SET_USER(response.data))
         } catch (e) {
-            localStorage.removeItem('token');
-            alert(e.response.data.message);
+            console.log(e);
         }
     }
 }
