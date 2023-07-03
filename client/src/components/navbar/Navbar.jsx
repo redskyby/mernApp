@@ -53,7 +53,9 @@ function Navbar() {
                     className="navbar__login"
                     onClick={() => dispatch(LOG_OUT())}
                 >Выход</div>}
-                {isAuth && <img src={avatar} alt="user avatar"/>}
+                {isAuth &&
+                   <NavLink to={'/profile'}> <img src={avatar} alt="user avatar"/></NavLink>
+                }
             </div>
         </div>
     );
