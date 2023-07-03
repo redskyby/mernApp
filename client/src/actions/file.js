@@ -2,20 +2,21 @@ import axios from "axios";
 import {ADD_FILE, DELETE_FILE, SET_FILES} from "../redux/slice/FileSlice";
 import {ADD_UPLOADER_FILE, CHANGE_UPLOAD_FILE, SHOW_UPLOADER} from "../redux/slice/UploadSlice";
 import {HIDE_LOADER, SHOW_LOADER} from "../redux/slice/AppSlice";
+import {API_URL} from "../config";
 
 export function getFiles(dirId, sort) {
     return async dispatch => {
         try {
             dispatch(SHOW_LOADER());
-            let url = `http://localhost:5000/api/files`;
+            let url = `${API_URL}/api/files`;
             if (dirId) {
-                url = `http://localhost:5000/api/files?parent=${dirId}`;
+                url = `${API_URL}/api/files?parent=${dirId}`;
             }
             if (sort) {
-                url = `http://localhost:5000/api/files?sort=${sort}`;
+                url = `${API_URL}/api/files?sort=${sort}`;
             }
             if (dirId && sort) {
-                url = `http://localhost:5000/api/files?parent=${dirId}&sort=${sort}`;
+                url = `${API_URL}/api/files?parent=${dirId}&sort=${sort}`;
             }
             const response = await axios.get(url, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
@@ -33,7 +34,7 @@ export function getFiles(dirId, sort) {
 export function createDir(dirId , name){
     return async dispatch =>{
         try {
-            const response = await axios.post(`http://localhost:5000/api/files`,{
+            const response = await axios.post(`${API_URL}/api/files`,{
                 name,
                 parent : dirId,
                 type : 'dir'
@@ -59,7 +60,7 @@ export function upLoadFile(file , dirId) {
             const uploadFile = {name: file.name, progress: 0, id: Date.now()}
             dispatch(SHOW_UPLOADER());
             dispatch(ADD_UPLOADER_FILE(uploadFile));
-            const response = await axios.post(`http://localhost:5000/api/files/upload`, formData ,{
+            const response = await axios.post(`${API_URL}/api/files/upload`, formData ,{
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
                 onUploadProgress :( progressEvent )=> {
                         const totalLength = progressEvent.event.lengthComputable ? progressEvent.total : progressEvent.event.target.getResponseHeader('content-length') || progressEvent.event.target.getResponseHeader('x-decompressed-content-length');
@@ -80,7 +81,7 @@ export function upLoadFile(file , dirId) {
 }
 
 export async function downloadFile(file){
-        const response = await fetch(`http://localhost:5000/api/files/download?id=${file._id}`,{
+        const response = await fetch(`${API_URL}/api/files/download?id=${file._id}`,{
             headers : {
                 Authorization : `Bearer ${localStorage.getItem('token')} `
             }
@@ -100,7 +101,7 @@ export async function downloadFile(file){
 export function deleteFile(file) {
     return async dispatch => {
         try {
-            const response = await axios.delete(`http://localhost:5000/api/files?id=${file._id}`, {
+            const response = await axios.delete(`${API_URL}/api/files?id=${file._id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -116,7 +117,7 @@ export function deleteFile(file) {
 export function searchFiles(search) {
     return async dispatch => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/files/search?search=${search}`, {
+            const response = await axios.get(`${API_URL}/api/files/search?search=${search}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
