@@ -37,8 +37,10 @@ function Navbar() {
     return (
         <div className="navbar">
             <div className="container">
-                <img src={Logo} alt="" className="navbar__logo"/>
-                <div className="navbar__header">MERN CLOUD</div>
+                <NavLink to="/">
+                    <img src={Logo} alt="" className="navbar__logo"/>
+                    <div className="navbar__header">MERN CLOUD</div>
+                </NavLink>
                 {isAuth && <input
                     className='navbar__search'
                     placeholder="Название файла"
@@ -54,7 +56,7 @@ function Navbar() {
                     onClick={() => dispatch(LOG_OUT())}
                 >Выход</div>}
                 {isAuth &&
-                   <NavLink to={'/profile'}> <img src={avatar} alt="user avatar"/></NavLink>
+                    <NavLink to={'/profile'}> <img src={avatar} alt="user avatar"/></NavLink>
                 }
             </div>
         </div>
