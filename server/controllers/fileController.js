@@ -146,16 +146,16 @@ class fileController {
         }
     }
 
-    async uploadAvatar(req , res){
-        try{
+    async uploadAvatar(req, res) {
+        try {
             const file = req.files.file;
-            const user = await User.findOne(req.use.id);
+            const user = await User.findById(req.use.id);
             const avatarName = uuid.v4() + '.jpg';
-            file.mv(config.get('staticPath') + '\\' + avatarName);
+            file.mv(config.get('staticPath') + "\\" + avatarName);
             user.avatar = avatarName;
-            await  user.save();
+            await user.save();
             return res.json(user);
-        }catch (e) {
+        } catch (e) {
             console.log(e);
             return res.status(400).json({message: "Upload avatar error."});
         }
@@ -163,7 +163,7 @@ class fileController {
 
     async deleteAvatar(req , res){
         try{
-            const user = await User.findOne(req.use.id);
+            const user = await User.findById(req.use.id);
             fs.unlinkSync(config.get('staticPath') + '\\' + user.avatar);
             user.avatar = null;
             await  user.save();

@@ -59,7 +59,7 @@ export const uploadAvatar = (file) => {
     }
 }
 
-export const deletedAvatar = (file) => {
+export const deleteAvatar = (file) => {
     return async dispatch => {
         try {
             const response = await axios.delete(`${API_URL}/api/auth/avatar`,

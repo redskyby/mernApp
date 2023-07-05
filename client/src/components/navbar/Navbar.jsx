@@ -56,7 +56,9 @@ function Navbar() {
                     onClick={() => dispatch(LOG_OUT())}
                 >Выход</div>}
                 {isAuth &&
-                    <NavLink to={'/profile'}> <img src={avatar} alt="user avatar"/></NavLink>
+                    <NavLink to={'/profile'}>
+                        <img className="navbar__avatar" src={avatar} alt="user avatar"/>
+                    </NavLink>
                 }
             </div>
         </div>
