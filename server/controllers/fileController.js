@@ -161,6 +161,7 @@ class fileController {
         }
     }
 
+
     async deleteAvatar(req, res) {
         try {
             const user = await User.findById(req.use.id);

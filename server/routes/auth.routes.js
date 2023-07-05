@@ -93,7 +93,7 @@ router.get('/auth', authMiddleware,
 
             const user = await User.findOne({_id: req.user.id});
             const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"});
-            await client.set("User_cache", JSON.stringify(user), {EX : 3600});
+            await client.set("User_cache", JSON.stringify(user), {EX: 3600});
 
             return res.json({
                 token,
