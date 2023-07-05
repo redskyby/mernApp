@@ -58,3 +58,16 @@ export const uploadAvatar = (file) => {
         }
     }
 }
+
+export const deletedAvatar = (file) => {
+    return async dispatch => {
+        try {
+            const response = await axios.delete(`${API_URL}/api/auth/avatar`,
+                {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}}
+            )
+            dispatch(SET_USER(response.data))
+        } catch (e) {
+            console.log(e);
+        }
+    }
+}
