@@ -37,7 +37,7 @@ function Navbar() {
     return (
         <div className="navbar">
             <div className="container">
-                <NavLink to="/">
+                <NavLink to="/" className="container__main_logo">
                     <img src={Logo} alt="" className="navbar__logo"/>
                     <div className="navbar__header">MERN CLOUD</div>
                 </NavLink>

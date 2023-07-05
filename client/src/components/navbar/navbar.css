@@ -30,5 +30,9 @@
   display: flex;
   align-items: center;
 }
+.container__main_logo {
+  display: flex;
+  text-decoration: none;
+}
 
 /*# sourceMappingURL=navbar.css.map */
