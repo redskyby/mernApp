@@ -149,7 +149,7 @@ class fileController {
     async uploadAvatar(req, res) {
         try {
             const file = req.files.file;
-            const user = await User.findById(req.use.id);
+            const user = await User.findById(req.user.id);
             const avatarName = uuid.v4() + '.jpg';
             file.mv(config.get('staticPath') + "\\" + avatarName);
             user.avatar = avatarName;
@@ -164,7 +164,7 @@ class fileController {
 
     async deleteAvatar(req, res) {
         try {
-            const user = await User.findById(req.use.id);
+            const user = await User.findById(req.user.id);
             fs.unlinkSync(config.get('staticPath') + "\\" + user.avatar);
             user.avatar = null;
             await user.save();
